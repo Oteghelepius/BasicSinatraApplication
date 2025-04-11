@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sinatra
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sinatra
+      env: dev
+  template:
+    metadata:
+      labels:
+        app: sinatra
+        env: dev
+    spec:
+      containers:
+      - name: sinatra
+        image: https://hub.docker.com/r/pius20/my-sinatra-app:latest
+        ports:
+        - containerPort: 4567
+        resources: 
+            limits: 
+              cpu: 200m
+              memory: 300Mi
+            requests: 
+              cpu: 100m
+              memory: 200Mi
